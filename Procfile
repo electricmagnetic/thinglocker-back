@@ -1,1 +1,1 @@
-web: gunicorn --pythonpath src thingstore.wsgi
+web: gunicorn --pythonpath src thinglocker.wsgi
