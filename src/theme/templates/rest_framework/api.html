@@ -1,0 +1,25 @@
+{% extends 'rest_framework/base.html' %}
+{% load static %}
+
+{% block meta %}
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="robots" content="NONE,NOARCHIVE" />
+  <link rel="shortcut icon" href="{% static 'favicon.ico' %}" />
+{% endblock %}
+
+{% block title %}
+{% if name %}{{ name }} – {% endif %}ThingStore API
+{% endblock %}
+
+{% block bootstrap_theme %}
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
+{% endblock %}
+
+{% block branding %}
+  <a class="navbar-brand" href="{% url 'api-root' %}">
+      ThingStore API
+  </a>
+{% endblock %}
+
+{% block description %}
+{% endblock %}
