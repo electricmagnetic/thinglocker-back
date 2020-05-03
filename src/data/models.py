@@ -15,6 +15,14 @@ class Metadata(models.Model):
     longitude = models.DecimalField(null=True, blank=True, max_digits=10, decimal_places=7)
     altitude = models.IntegerField(null=True, blank=True)
 
+    def __str__(self):
+        return ("%s" % (self.time.strftime("%Y-%m-%d %H:%M:%S")))
+
+    class Meta:
+        ordering = ['-time']
+        verbose_name = 'metadata'
+        verbose_name_plural = 'metadata'
+
 class Datum(models.Model):
     """ Data point submitted by the Things Network """
 
@@ -29,3 +37,11 @@ class Datum(models.Model):
     payload_fields = JSONField(null=True, blank=True)
     metadata = models.OneToOneField(Metadata, on_delete=models.CASCADE)
     downlink_url = models.URLField(max_length=255, null=True, blank=True)
+
+    def __str__(self):
+        return ("%s" % (self.id))
+
+    class Meta:
+        ordering = ['id',]
+        verbose_name = 'datum'
+        verbose_name_plural = 'data'
