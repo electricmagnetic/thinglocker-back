@@ -7,7 +7,7 @@ class Metadata(models.Model):
     time = models.DateTimeField()
     frequency = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
     modulation = models.CharField(max_length=4, null=True, blank=True)
-    data_rate = models.CharField(max_length=7, null=True, blank=True)
+    data_rate = models.CharField(max_length=8, null=True, blank=True)
     bit_rate = models.IntegerField(null=True, blank=True)
     coding_rate = models.CharField(max_length=3, null=True, blank=True)
     gateways = JSONField(null=True, blank=True)
