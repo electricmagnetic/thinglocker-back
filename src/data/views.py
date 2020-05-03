@@ -5,7 +5,6 @@ from .serializers import MetadataSerializer, DatumSerializer
 
 class MetadataViewSet(viewsets.ModelViewSet):
     serializer_class = MetadataSerializer
-    ordering_fields = ('id', 'time',)
 
     def get_queryset(self):
         queryset = Metadata.objects. \
@@ -17,6 +16,7 @@ class MetadataViewSet(viewsets.ModelViewSet):
 class DatumViewSet(viewsets.ModelViewSet):
     serializer_class = DatumSerializer
     ordering_fields = ('id',)
+    filter_fields = ('app_id', 'dev_id', 'hardware_serial',)
 
     def get_queryset(self):
         queryset = Datum.objects. \

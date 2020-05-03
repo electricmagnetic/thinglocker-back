@@ -19,6 +19,8 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.http import HttpResponse
 
+from rest_framework.authtoken import views
+
 from .router import router
 
 # Custom admin site settings
@@ -39,6 +41,12 @@ urlpatterns = [
     path('', include(router.urls)),
 ]
 
+# Enabling obtention of token
+urlpatterns += [
+    path('authenticate/', views.obtain_auth_token)
+]
+
+# Adding debug toolbar
 if settings.DEBUG:
     import debug_toolbar
     urlpatterns = [
