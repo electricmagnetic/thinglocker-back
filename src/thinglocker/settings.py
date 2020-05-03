@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'django_filters',
     'debug_toolbar',
+    'data',
 ]
 
 MIDDLEWARE = [
@@ -201,8 +202,8 @@ if env.bool('CORS_ALLOW_LOCALHOST', False):
 
 # Custom admin site header
 
-ADMIN_SITE_HEADER = "ThingStore"
-ADMIN_SITE_TITLE = "ThingStore"
+ADMIN_SITE_HEADER = "ThingLocker"
+ADMIN_SITE_TITLE = "ThingLocker"
 ADMIN_INDEX_TITLE = "Admin"
 
 # Production security

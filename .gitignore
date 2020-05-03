@@ -10,7 +10,7 @@
 .vagrant/
 src/media/
 __pycache__/
-data/
+/data/
 
 .coverage
 .env
