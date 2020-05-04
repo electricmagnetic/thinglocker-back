@@ -42,6 +42,6 @@ class Datum(models.Model):
         return ("%s" % (self.id))
 
     class Meta:
-        ordering = ['id',]
+        ordering = ['-id',]
         verbose_name = 'datum'
         verbose_name_plural = 'data'
