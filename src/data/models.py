@@ -29,8 +29,6 @@ class Metadata(models.Model):
 class Datum(models.Model):
     """ Data point submitted by the Things Network """
 
-    app_id = models.CharField(max_length=36)
-    dev_id = models.CharField(max_length=36)
     hardware_serial = models.CharField(max_length=16, null=True, blank=True)
     port = models.IntegerField(null=True, blank=True)
     counter = models.IntegerField(null=True, blank=True)
@@ -41,8 +39,8 @@ class Datum(models.Model):
     metadata = models.OneToOneField(Metadata, on_delete=models.CASCADE)
     downlink_url = models.URLField(max_length=255, null=True, blank=True)
 
-    application = models.ForeignKey(Application, on_delete=models.CASCADE, null=True)
-    device = models.ForeignKey(Device, on_delete=models.CASCADE, null=True)
+    application = models.ForeignKey(Application, on_delete=models.CASCADE)
+    device = models.ForeignKey(Device, on_delete=models.CASCADE)
 
     def __str__(self):
         return ("%s" % (self.id))

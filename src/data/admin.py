@@ -3,8 +3,8 @@ from django.contrib import admin
 from .models import Datum, Metadata
 
 class DatumAdmin(admin.ModelAdmin):
-    list_display = ('__str__', 'app_id', 'dev_id', 'payload_raw', 'metadata')
-    list_filter = ('app_id', 'dev_id', 'metadata__time')
+    list_display = ('__str__', 'application', 'device', 'payload_raw', 'metadata')
+    list_filter = ('application', 'device', 'metadata__time')
     readonly_fields = ('metadata',)
 
 class MetadataAdmin(admin.ModelAdmin):
