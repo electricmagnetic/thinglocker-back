@@ -1,6 +1,9 @@
 from django.db import models
 from django.contrib.postgres.fields import JSONField, ArrayField
 
+from application.models import Application
+from device.models import Device
+
 class Metadata(models.Model):
     """ Metadata associated with a given data point """
 
@@ -37,6 +40,9 @@ class Datum(models.Model):
     payload_fields = JSONField(null=True, blank=True)
     metadata = models.OneToOneField(Metadata, on_delete=models.CASCADE)
     downlink_url = models.URLField(max_length=255, null=True, blank=True)
+
+    application = models.ForeignKey(Application, on_delete=models.CASCADE, null=True)
+    device = models.ForeignKey(Device, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return ("%s" % (self.id))
