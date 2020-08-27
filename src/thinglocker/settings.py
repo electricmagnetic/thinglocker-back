@@ -24,19 +24,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'DO_NOT_USE_IN_PRODUCTION'
+SECRET_KEY = env.str('DJANGO_SECRET_KEY', 'DO_NOT_USE_IN_PRODUCTION')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool('DEBUG', True)
 
-ALLOWED_HOSTS = []
-
-# Production settings for security and geo libraries
-if env.bool('IS_PRODUCTION', False):
-    SECRET_KEY = env.str('DJANGO_SECRET_KEY')
-
-    DEBUG = False
-
+if DEBUG:
+    ALLOWED_HOSTS = []
+else:
     ALLOWED_HOSTS = [
         '.electricmagnetic.io',
     ]
@@ -111,7 +106,7 @@ DATABASES = {
 }
 
 DATABASES['default']['CONN_MAX_AGE'] = 600
-DATABASES['default']['ENGINE'] = 'django.db.backends.postgresql'
+DATABASES['default']['ENGINE'] = 'django.contrib.gis.db.backends.postgis'
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -210,14 +205,14 @@ ADMIN_INDEX_TITLE = "Admin"
 
 # Production security
 
-#if not DEBUG:
-#    CSRF_COOKIE_SECURE = True
-#    SESSION_COOKIE_SECURE = True
-#    SECURE_SSL_REDIRECT = True
-#    SECURE_CONTENT_TYPE_NOSNIFF = True
-#    SECURE_HSTS_SECONDS = 3600
-#    SECURE_BROWSER_XSS_FILTER = True
-#    X_FRAME_OPTIONS = 'DENY'
+if env.bool('ADD_SECURITY', False):
+   CSRF_COOKIE_SECURE = True
+   SESSION_COOKIE_SECURE = True
+   SECURE_SSL_REDIRECT = True
+   SECURE_CONTENT_TYPE_NOSNIFF = True
+   SECURE_HSTS_SECONDS = 3600
+   SECURE_BROWSER_XSS_FILTER = True
+   X_FRAME_OPTIONS = 'DENY'
 
 # Debug toolbar
 
